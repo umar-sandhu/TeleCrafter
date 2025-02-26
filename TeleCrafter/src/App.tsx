@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { Download, Phone } from 'lucide-react';
 
 type GenerationMode = 'random' | 'fixMiddle' | 'fixEnd';
@@ -45,15 +45,15 @@ function App() {
 
       switch (mode) {
         case 'fixMiddle': {
-          const middlePattern = middleDigits.padEnd(3, '_');
-          const randomMiddle = generateRandomDigits(3, middlePattern);
-          number += randomMiddle + generateRandomDigits(4);
+          const middlePattern = middleDigits.padEnd(5, '_');
+          const randomMiddle = generateRandomDigits(5, middlePattern);
+          number += randomMiddle + generateRandomDigits(2);
           break;
         }
         case 'fixEnd': {
-          const endPattern = endDigits.padEnd(3, '_');
-          const randomMiddle = generateRandomDigits(4);
-          const randomEnd = generateRandomDigits(3, endPattern);
+          const endPattern = endDigits.padEnd(5, '_');
+          const randomMiddle = generateRandomDigits(2);
+          const randomEnd = generateRandomDigits(5, endPattern);
           number += randomMiddle + randomEnd;
           break;
         }
@@ -141,19 +141,19 @@ function App() {
             {mode === 'fixMiddle' && (
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Middle Digits (0-3 digits){getDigitPlaceholder('middle')}
+                  Middle Digits (0-5 digits){getDigitPlaceholder('middle')}
                 </label>
                 <input
                   type="text"
                   pattern="\d*"
-                  maxLength={3}
+                  maxLength={5}
                   className="w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                   value={middleDigits}
                   onChange={(e) => setMiddleDigits(e.target.value.replace(/\D/g, ''))}
-                  placeholder="Enter up to 3 digits"
+                  placeholder="Enter up to 5 digits"
                 />
                 <p className="mt-1 text-sm text-gray-500">
-                  Format: XXX (any unfilled positions will be random)
+                  Format: XXXXX (any unfilled positions will be random)
                 </p>
               </div>
             )}
@@ -161,19 +161,19 @@ function App() {
             {mode === 'fixEnd' && (
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Last Digits (0-3 digits){getDigitPlaceholder('end')}
+                  Last Digits (0-5 digits){getDigitPlaceholder('end')}
                 </label>
                 <input
                   type="text"
                   pattern="\d*"
-                  maxLength={3}
+                  maxLength={5}
                   className="w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                   value={endDigits}
                   onChange={(e) => setEndDigits(e.target.value.replace(/\D/g, ''))}
-                  placeholder="Enter up to 3 digits"
+                  placeholder="Enter up to 5 digits"
                 />
                 <p className="mt-1 text-sm text-gray-500">
-                  Format: XXX (any unfilled positions will be random)
+                  Format: XXXXX (any unfilled positions will be random)
                 </p>
               </div>
             )}
